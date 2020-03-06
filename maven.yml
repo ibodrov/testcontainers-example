@@ -1,0 +1,18 @@
+configuration:
+  dependencies:
+    - "mvn://com.walmartlabs.concord.plugins:git:1.23.2"
+
+flows:
+  default:
+    - task: git
+      in:
+        action: "clone"
+        url: "https://github.com/ibodrov/testcontainers-example.git"
+        workingDir: "repo"
+
+    - docker: "maven:3"
+      cmd: |
+        cd /workspace/repo
+        mvn -s /workspace/settings.xml -B clean install
+      env:
+        DOCKER_HOST: "tcp://localhost:6666"
