@@ -16,3 +16,4 @@ flows:
         mvn -s /workspace/settings.xml -B clean install
       env:
         DOCKER_HOST: "tcp://localhost:6666"
+        TESTCONTAINERS_RYUK_DISABLED: true
